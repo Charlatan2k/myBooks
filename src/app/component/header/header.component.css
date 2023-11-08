@@ -1,0 +1,42 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 10vh;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 150, 136, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.navbar-items {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2vw;
+  align-items: center;
+  width: 50%;
+  color: white;
+  font-size: 22px;
+}
+
+.navbar-items a {
+  color: white;
+  text-decoration: none;
+}
+
+#home-item {
+  padding-left: 20px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+  font-size: 30px;
+  padding-right: 50px;
+  color: white;
+}

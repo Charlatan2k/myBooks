@@ -1,0 +1,153 @@
+.cont-pr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 81.8vh;
+  background-image: url(https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_nostos_03_2560x1080.jpg&height=506&sharpen);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cont-perfil {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 55vh;
+  width: 45vw;
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: rgba(73, 77, 95, 0.85);
+  color: white;
+}
+
+.cont-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-right: 3px solid;
+  width: 50%;
+  height: 100%;
+}
+
+.left-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60%;
+}
+
+.left-items img {
+  border: 4px solid white;
+  border-radius: 200px;
+  width: 50%;
+}
+
+.left-items h3 {
+  color: white;
+  font-size: 24px;
+  font-weight: lighter;
+  margin-top: 10px;
+}
+
+.datos-usuario {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 40%;
+}
+
+.columna-titulos p {
+  padding: 10px;
+  width: 10vh;
+  font-size: 18px;
+}
+
+.columna-titulos,
+.columna-valores {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.columna-valores p {
+  border: 2px solid gray;
+  border-radius: 4px;
+  width: 15vh;
+  padding: 10px;
+  background-color: rgba(73, 77, 95, 0.85);
+  text-align: center;
+}
+
+.datos-usuario p {
+  margin-left: 40px;
+}
+
+.cont-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+.right-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.right-items h1 {
+  margin-bottom: 5vh;
+  border-bottom: 3px solid;
+  width: 20vw;
+  text-align: center;
+}
+
+.campo-editar li {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.campo-editar form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.campo-editar input {
+  border: 2px solid gray;
+  border-radius: 4px;
+  width: 35vh;
+  padding: 10px;
+  background-color: rgba(73, 77, 95, 0.85);
+  color: white;
+  text-align: center;
+}
+
+.campo-editar button {
+  margin-top: 30px;
+  background: rgba(0, 150, 136, 1);
+  border: 2px solid rgba(73, 77, 95, 0.85);
+  border-radius: 4px;
+  width: 12vw;
+  height: 4vh;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+}
+
+.campo-editar button:hover {
+  opacity: 80%;
+}

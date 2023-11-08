@@ -1,0 +1,33 @@
+.container-pr {
+  display: flex;
+  height: 81.9vh;
+  width: 100%;
+}
+
+.contenido {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_nostos_03_2560x1080.jpg&height=506&sharpen);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+.caja-texto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 10vh;
+  width: 65vw;
+  border: 2px solid black;
+  border-radius: 7px;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 150, 136, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}

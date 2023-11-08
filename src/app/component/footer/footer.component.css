@@ -1,0 +1,18 @@
+.footer {
+  display: flex;
+  background-color: black;
+  height: 4vw;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+}
+
+.footer-items {
+  display: flex;
+  flex-direction: row;
+  gap: 200px;
+  font-size: 40px;
+  color: white;
+}
