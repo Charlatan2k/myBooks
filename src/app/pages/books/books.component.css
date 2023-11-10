@@ -1,0 +1,16 @@
+.cont-pr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 81.78vh;
+}
+
+.cont-libros {
+  display: flex;
+  border: 2px solid red;
+}
+
+.card img {
+  width: 100%;
+  height: 50%;
+}
