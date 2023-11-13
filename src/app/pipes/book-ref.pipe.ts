@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'bookRef',
 })
 export class BookRefPipe implements PipeTransform {
-  transform(id: number): string {
-    return `Ref-${id}`;
+  transform(value: number): string {
+    return `Ref-${value}`;
   }
 }

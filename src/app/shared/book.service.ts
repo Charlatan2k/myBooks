@@ -14,9 +14,9 @@ export class BookService {
       values.title,
       values.type,
       values.author,
-      values.price,
+      Number(values.price),
       values.photo,
-      values.id_libro
+      Number(values.id_book)
     );
     console.log('addBook called');
 
@@ -47,7 +47,10 @@ export class BookService {
     return;
   }
 
-  public delete(id: number): void {
-    this.books.splice(id, 1);
+  public delete(id: number) {
+    const index = this.books.findIndex((book) => book.id_book === id);
+    if (index !== -1) {
+      this.books.splice(index, 1);
+    }
   }
 }
