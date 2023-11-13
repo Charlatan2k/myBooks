@@ -1,16 +1,107 @@
-.cont-pr {
+.buscador {
+  margin-top: 40px;
+  background-color: rgba(73, 77, 95, 0.85);
+  border: 2px solid green;
+  width: 25vw;
+  color: white;
+}
+
+.cont-pagina {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 82.8vh;
+  width: 100%;
+  gap: 10vw;
+}
+
+.cont-pr {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
   height: 81.78vh;
+  width: 100%;
 }
 
 .cont-libros {
   display: flex;
-  border: 2px solid red;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  height: 40vh;
+  flex-wrap: wrap;
+}
+
+.book-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 45vw;
+  height: 60vh;
+  gap: 50px;
+}
+
+.cont-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 60vh;
+  border: 2px solid rgba(73, 77, 95, 0.85);
+  border-radius: 10px;
+  background-color: rgba(73, 77, 95, 0.85);
+}
+
+.cont-form h1 {
+  color: white;
+  margin-bottom: 50px;
+}
+
+.cont-form ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  text-align: center;
+  color: white;
+}
+
+.cont-form button {
+  margin-top: 10px;
+}
+
+.cont-form input {
+  background-color: rgba(73, 77, 95, 0.85);
+  border: 2px solid rgba(73, 77, 95, 0.85);
+  border-radius: 4px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 100px;
 }
 
 .card img {
-  width: 100%;
-  height: 50%;
+  width: 8.3vw;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+#noBookAlert {
+  display: flex;
+  width: 400px;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
 }

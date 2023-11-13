@@ -1,0 +1,25 @@
+<div class="cont-libros">
+  <div class="img-container">
+    <button id="btn-x" (click)="deleteBook()">X</button>
+    <div class="card" style="width: 15rem">
+      <img [src]="book?.photo" class="card-img-top" alt="..." />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ book?.title }}</h5>
+      <p class="card-type">
+        {{ book?.type }}
+      </p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Autor: {{ book?.author }}</li>
+      <li class="list-group-item">Precio: {{ book?.price }}€</li>
+      <li class="list-group-item">Id: {{ book?.id_book | bookRef }}</li>
+    </ul>
+    <button
+      id="btn-compr"
+      [ngStyle]="index % 2 === 0 ? { 'background-color': 'green' } : {}"
+    >
+      Buy
+    </button>
+  </div>
+</div>

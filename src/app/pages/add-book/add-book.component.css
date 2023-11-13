@@ -1,0 +1,69 @@
+.cont-pr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 79.9vh;
+  background-image: url(https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_nostos_03_2560x1080.jpg&height=506&sharpen);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cont-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 60vh;
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: rgba(73, 77, 95, 0.85);
+}
+
+.cont-form h1 {
+  color: white;
+}
+
+.cont-form ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  text-align: center;
+  color: white;
+}
+
+.cont-form button {
+  margin-top: 10px;
+}
+
+.cont-form input {
+  font-size: 24px;
+  background-color: rgba(73, 77, 95, 0.85);
+  border: 2px solid white;
+  border-radius: 4px;
+  width: 30vw;
+}
+
+#btn_guardar_libro {
+  background-color: green;
+  border: 2px solid green;
+  border-radius: 5px;
+  margin-top: 40px;
+  width: 25vw;
+  color: white;
+  transition: all ease-in-out 0.3s;
+}
+
+#btn_guardar_libro:hover {
+  background-color: white;
+  color: green;
+}
+
+#btn_guardar_libro:disabled {
+  background-color: gray;
+  border: 2px solid gray;
+  color: white;
+}

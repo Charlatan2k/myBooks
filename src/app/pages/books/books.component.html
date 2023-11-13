@@ -1,27 +1,17 @@
-<div class="cont-pr">
-  <div class="cont-libros">
-    <div
-      *ngFor="let libro of libros; let i = index"
-      class="card"
-      style="width: 18rem"
-    >
-      <img src="" class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-      </ul>
-      <div class="card-body">
-        <a class="card-link">Card link</a>
-        <a class="card-link">Another link</a>
-      </div>
+<div class="cont-pagina">
+  <input class="buscador" [(ngModel)]="searchTerm" (input)="searchBooks()" />
+  <div *ngIf="books.length >= 1; else noBooksAlert" class="cont-pr">
+    <div class="book-container">
+      <app-card
+        *ngFor="let libro of books; let i = index"
+        [book]="libro"
+        [index]="i"
+        (delete)="deleteBook(i)"
+      ></app-card>
     </div>
   </div>
+
+  <ng-template #noBooksAlert>
+    <div class="alert alert-warning">There are no books.</div>
+  </ng-template>
 </div>
