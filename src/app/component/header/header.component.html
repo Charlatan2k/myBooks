@@ -1,10 +1,50 @@
 <div class="navbar">
   <div class="navbar-items">
-    <a routerLink="/home" id="home-item">Home</a>
-    <a routerLink="register" id="register-item">Register</a>
-    <a routerLink="profile" id="profile-item">Profile</a>
-    <a routerLink="books">Books</a>
-    <a routerLink="add_book">Add a new Book</a>
+    <a
+      routerLink="/home"
+      routerLinkActive="active"
+      (click)="navigateTo('/home')"
+      id="home-item"
+      >Home</a
+    >
+    <a
+      routerLink="/register"
+      routerLinkActive="active"
+      (click)="navigateTo('/register')"
+      id="register-item"
+      >Register</a
+    >
+    <a
+      routerLink="/login"
+      routerLinkActive="active"
+      (click)="navigateTo('/login')"
+      >Login</a
+    >
+    <a
+      routerLink="/profile"
+      routerLinkActive="active"
+      (click)="navigateTo('/profile')"
+      id="profile-item"
+      >Profile</a
+    >
+    <a
+      routerLink="/books"
+      routerLinkActive="active"
+      (click)="navigateTo('/books')"
+      >Books</a
+    >
+    <a
+      routerLink="/add_book"
+      routerLinkActive="active"
+      (click)="navigateTo('/add_book')"
+      >Add a new Book</a
+    >
+    <a
+      routerLink="/update_book"
+      routerLinkActive="active"
+      (click)="navigateTo('/update_book')"
+      >Update Book</a
+    >
   </div>
   <div class="logo-container">
     <a id="logo">MyBooks</a>

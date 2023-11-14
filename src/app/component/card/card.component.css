@@ -5,6 +5,8 @@
   align-items: center;
   width: 100%;
   flex-wrap: wrap;
+  background-color: white;
+  border-radius: 20px;
 }
 
 .card {

@@ -27,15 +27,16 @@
   width: 50%;
   color: white;
   font-size: 22px;
+  cursor: pointer;
+  padding-left: 20px;
 }
 
 .navbar-items a {
-  color: white;
   text-decoration: none;
+  color: white;
 }
 
 #home-item {
-  padding-left: 20px;
 }
 
 .logo-container {
@@ -45,4 +46,32 @@
   font-size: 30px;
   padding-right: 50px;
   color: white;
+}
+
+@keyframes expandContract {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+.active {
+  position: relative;
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: 0;
+  background: #fff;
+  animation: expandContract 2s infinite;
 }

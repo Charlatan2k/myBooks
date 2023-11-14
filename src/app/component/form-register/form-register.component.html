@@ -1,23 +1,151 @@
 <div class="cont-form">
   <div class="form-items">
-    <form action="" method="post">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <ul>
+        <h1>Registrate</h1>
         <li>
-          <h1>Registrate</h1>
+          <input
+            type="text"
+            formControlName="name"
+            placeholder="Nombre"
+            [ngClass]="{
+              'is-invalid':
+                registerForm.controls.name.invalid &&
+                (registerForm.controls.name.dirty ||
+                  registerForm.controls.name.touched)
+            }"
+          />
+          <div
+            *ngIf="
+              (registerForm.controls.name.dirty ||
+                registerForm.controls.name.touched) &&
+              registerForm.controls.name.invalid
+            "
+            class="invalid-feedback"
+          >
+            <p *ngIf="registerForm.controls.name.errors.required">
+              El nombre es obligatorio
+            </p>
+          </div>
         </li>
         <li>
-          <input type="text" placeholder="Nombre" />
+          <input
+            type="text"
+            formControlName="apellido"
+            placeholder="Apellido"
+            [ngClass]="{
+              'is-invalid':
+                registerForm.controls.apellido.invalid &&
+                (registerForm.controls.apellido.dirty ||
+                  registerForm.controls.apellido.touched)
+            }"
+          />
+          <div
+            *ngIf="
+              (registerForm.controls.apellido.dirty ||
+                registerForm.controls.apellido.touched) &&
+              registerForm.controls.apellido.invalid
+            "
+            class="invalid-feedback"
+          >
+            <p *ngIf="registerForm.controls.apellido.errors.required">
+              El apellido es obligatorio
+            </p>
+          </div>
         </li>
         <li>
-          <input type="text" placeholder="Apellido" />
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="Correo"
+            [ngClass]="{
+              'is-invalid':
+                registerForm.controls.email.invalid &&
+                (registerForm.controls.email.dirty ||
+                  registerForm.controls.email.touched)
+            }"
+          />
+          <div
+            *ngIf="
+              (registerForm.controls.email.dirty ||
+                registerForm.controls.email.touched) &&
+              registerForm.controls.email.invalid
+            "
+            class="invalid-feedback"
+          >
+            <p *ngIf="registerForm.controls.email.errors.required">
+              El correo es obligatorio
+            </p>
+            <p *ngIf="registerForm.controls.email.errors.email">
+              El correo no es válido
+            </p>
+          </div>
         </li>
         <li>
-          <input type="email" placeholder="Correo" />
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Contraseña"
+            [ngClass]="{
+              'is-invalid':
+                registerForm.controls.password.invalid &&
+                (registerForm.controls.password.dirty ||
+                  registerForm.controls.password.touched)
+            }"
+          />
+          <div
+            *ngIf="
+              (registerForm.controls.password.dirty ||
+                registerForm.controls.password.touched) &&
+              registerForm.controls.password.invalid
+            "
+            class="invalid-feedback"
+          >
+            <p *ngIf="registerForm.controls.password.errors.required">
+              La contraseña es obligatoria
+            </p>
+          </div>
         </li>
         <li>
-          <input type="password" placeholder="Contraseña" />
+          <input
+            type="password"
+            formControlName="confirmPassword"
+            placeholder="Confirmar Contraseña"
+            [ngClass]="{
+              'is-invalid':
+                (registerForm.controls.confirmPassword.invalid &&
+                  (registerForm.controls.confirmPassword.dirty ||
+                    registerForm.controls.confirmPassword.touched)) ||
+                (registerForm.errors?.notSame &&
+                  registerForm.controls.confirmPassword.touched)
+            }"
+          />
+          <div
+            *ngIf="
+              (registerForm.controls.confirmPassword.dirty ||
+                registerForm.controls.confirmPassword.touched) &&
+              registerForm.controls.confirmPassword.invalid
+            "
+            class="invalid-feedback"
+          >
+            <p *ngIf="registerForm.controls.confirmPassword.errors.required">
+              La confirmación de la contraseña es obligatoria
+            </p>
+          </div>
+          <div
+            *ngIf="
+              registerForm.errors?.notSame &&
+              (registerForm.controls.confirmPassword.dirty ||
+                registerForm.controls.confirmPassword.touched)
+            "
+            class="invalid-feedback"
+          >
+            <p>Las contraseñas no coinciden</p>
+          </div>
         </li>
-        <button type="submit">Registrarse</button>
+        <button type="submit" [disabled]="registerForm.invalid">
+          Registrarse
+        </button>
       </ul>
     </form>
   </div>
