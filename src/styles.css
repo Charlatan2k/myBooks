@@ -11,5 +11,19 @@
 html,
 body {
   min-height: 100vh;
-  overflow: auto;
 }
+
+/* .toast-message {
+  position: fixed !important;
+  top: 5% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  margin-top: auto;
+}
+
+.toast-title {
+  position: fixed !important;
+  top: 10% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+} */

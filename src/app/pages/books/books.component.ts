@@ -10,36 +10,34 @@ import { BookService } from 'src/app/shared/book.service';
 })
 export class BooksComponent {
   public libro1: Book;
-  public books: Book[] = [];
+
   @ViewChild('noBooksAlert', { static: true }) noBooksAlert: TemplateRef<any>;
 
-  constructor(private bookService: BookService) {
+  constructor(public bookService: BookService) {
     this.libro1 = new Book(
-      'El rey Leon',
+      'Holita',
       'Drama',
-      'Pepe',
-      15,
-      'https://m.media-amazon.com/images/I/81G4SjA4+AL._AC_UF1000,1000_QL80_.jpg',
+      'Yo',
+      100,
+      'https://picsum.photos/200/300',
       1
     );
-
-    // Only add libro1 if the books array is empty
-    if (this.bookService.getAll().length === 0) {
-      this.bookService.addBook(this.libro1);
-    }
   }
 
   ngOnInit() {
-    this.books = this.bookService.getAll();
+    this.bookService.getAll().subscribe((books: Book[]) => {
+      this.bookService.books = books;
+      this.bookService.filteredBooks = [...this.bookService.books]; // Initialize filteredBooks with books
+    });
   }
 
-  public deleteBook(index: number) {
-    this.books.splice(index, 1);
-  }
-
-  public searchTerm: string = '';
-
-  public searchBooks() {
-    this.books = this.bookService.searchBooks(this.searchTerm);
+  public getBookById(id: string) {
+    if (id) {
+      this.bookService.filteredBooks = this.bookService.books.filter(
+        (book) => book.id_book === +id
+      );
+    } else {
+      this.bookService.filteredBooks = [...this.bookService.books];
+    }
   }
 }

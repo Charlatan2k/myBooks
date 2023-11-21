@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/shared/book.service';
+import { NgForm } from '@angular/forms';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-book',
@@ -22,10 +24,27 @@ export class AddBookComponent {
     id_book: new FormControl('', Validators.required),
   });
 
-  constructor(public bookService: BookService) {}
+  constructor(public bookService: BookService, private toastr: ToastrService) {}
 
-  onSubmit() {
-    console.log('onSubmit called');
-    this.bookService.addBook(this.bookForm.value);
+  public addBook() {
+    console.log('addBook() called');
+    if (this.bookForm.valid) {
+      const values = this.bookForm.value;
+      console.log('Form values:', values);
+      this.bookService.add(values).subscribe(
+        (book: Book) => {
+          console.log('Book added:', book);
+          this.toastr.success('Book added successfully'); // add this line
+          this.bookForm.reset();
+          this.bookService.getAll().subscribe((books: Book[]) => {
+            this.bookService.books = books;
+            this.bookService.filteredBooks = [...this.bookService.books];
+          });
+        },
+        (error) => {
+          console.error('Error adding book:', error);
+        }
+      );
+    }
   }
 }

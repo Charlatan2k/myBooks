@@ -1,9 +1,17 @@
 <div class="cont-pagina">
-  <input class="buscador" [(ngModel)]="searchTerm" (input)="searchBooks()" />
-  <div *ngIf="books.length >= 1; else noBooksAlert" class="cont-pr">
+  <input
+    class="buscador"
+    (input)="getBookById($event.target.value)"
+    placeholder="Search by ID"
+  />
+
+  <div
+    *ngIf="bookService.filteredBooks.length; else noBooksAlert"
+    class="cont-pr"
+  >
     <div class="book-container">
       <app-card
-        *ngFor="let libro of books; let i = index"
+        *ngFor="let libro of bookService.filteredBooks; let i = index"
         [book]="libro"
         [index]="i"
         (delete)="deleteBook(i)"

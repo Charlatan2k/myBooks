@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from 'src/app/shared/book.service';
 import { ToastrService } from 'ngx-toastr';
+import { Book } from 'src/app/models/book';
 
 @Component({
   selector: 'app-update-book',
@@ -12,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class UpdateBookComponent implements OnInit {
   bookForm: FormGroup;
   bookId: number;
+  book: Book;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,28 +34,22 @@ export class UpdateBookComponent implements OnInit {
     });
 
     this.bookId = Number(this.route.snapshot.paramMap.get('id'));
-    const book = this.bookService.getOne(this.bookId);
-
-    if (book) {
-      this.bookForm.setValue({
-        title: book.title,
-        author: book.author,
-        price: book.price,
-        photo: book.photo,
-        type: book.type,
-        id_book: book.id_book,
-      });
-    }
   }
   onSubmit() {
     const updatedBook = this.bookForm.value;
-    const updateSuccessful = this.bookService.update(updatedBook);
-
-    if (updateSuccessful) {
-      this.toastr.success('Libro modificado correctamente');
-      this.router.navigate(['/books']);
-    } else {
-      this.toastr.warning('Libro con id dado no se a encontrado');
-    }
+    console.log(updatedBook);
+    console.log(this.book?.photo);
+    this.bookService.update(updatedBook.id_book, updatedBook).subscribe(
+      (updatedBook) => {
+        this.book = updatedBook;
+        this.toastr.success('Book modified successfully');
+      },
+      (error) => {
+        console.error(error);
+        this.toastr.warning(
+          error.message || 'Libro con id dado no se a encontrado'
+        );
+      }
+    );
   }
 }

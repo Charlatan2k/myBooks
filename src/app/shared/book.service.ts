@@ -1,79 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../models/book';
 import { ToastrService } from 'ngx-toastr';
-
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
-  private books: Book[] = [];
+  private url = 'http://localhost:3000/books';
+  public books: Book[] = [];
+  public filteredBooks: Book[] = [];
 
-  constructor(private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService, private http: HttpClient) {}
 
-  addBook(values: any) {
-    const nuevoLibro = new Book(
-      values.title,
-      values.type,
-      values.author,
-      Number(values.price),
-      values.photo,
-      Number(values.id_book)
-    );
-    console.log('addBook called');
-
-    this.books.push(nuevoLibro);
-    this.toastr.success(
-      'Tu libro a sido agregado correctamente',
-      'Disfruta de tu nuevo libro',
-      {
-        titleClass: 'toast-title',
-        messageClass: 'toast-message',
-      }
+  public getAll(): Observable<Book[]> {
+    return this.http.get<Book[]>(this.url).pipe(
+      tap((books: Book[]) => {
+        this.books = books;
+        this.filteredBooks = [...this.books];
+      })
     );
   }
 
-  public searchBooks(searchTerm: string): Book[] {
-    const foundBooks = this.books.filter(
-      (book) =>
-        book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        book.id_book.toString() === searchTerm
-    );
-
-    if (foundBooks.length === 0) {
-      this.toastr.warning('No se encontró ningún libro con ese nombre o ID');
-      return [];
-    }
-
-    return foundBooks;
+  public getOne(id: number): Observable<Book> {
+    return this.http.get<Book>(`${this.url}/${id}`);
   }
 
-  public getAll(): Book[] {
-    return this.books;
+  public add(values: any): Observable<Book> {
+    return this.http.post<Book>(this.url, values);
   }
 
-  public getOne(id: number): Book {
-    return this.books.find((book) => book.id_book === id);
+  public update(id: number, values: any): Observable<Book> {
+    console.log(id); // add this line
+    return this.http.put<Book>(`${this.url}/${id}`, values);
   }
 
-  public add(book: Book): void {
-    this.books.push(book);
-  }
-
-  public update(updatedBook: Book): boolean {
-    const index = this.books.findIndex(
-      (book) => book.id_book === updatedBook.id_book
-    );
-    if (index !== -1) {
-      this.books[index] = updatedBook;
-      return true;
-    }
-    return false;
-  }
-
-  public delete(id: number) {
-    const index = this.books.findIndex((book) => book.id_book === id);
-    if (index !== -1) {
-      this.books.splice(index, 1);
-    }
+  public delete(id: number): Observable<any> {
+    const url = `${this.url}/${id}`;
+    return this.http.delete(url);
   }
 }

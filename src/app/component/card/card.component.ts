@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/shared/book.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-card',
@@ -15,14 +16,21 @@ export class CardComponent {
 
   public books: Book[] = [];
 
-  constructor(private bookService: BookService) {}
+  constructor(
+    private bookService: BookService,
+    private toastr: ToastrService
+  ) {}
 
-  public deleteBook() {
-    this.delete.emit();
-  }
-
-  public eliminarBook(id: number) {
-    this.bookService.delete(id);
-    this.books = this.bookService.getAll(); // Update the books array after deleting a book
+  public deleteBook(id: number) {
+    this.bookService.delete(id).subscribe(() => {
+      const index = this.bookService.books.findIndex(
+        (book) => book.id_book === id
+      );
+      if (index !== -1) {
+        this.toastr.success('Book deleted succesfully');
+        this.bookService.books.splice(index, 1);
+        this.bookService.filteredBooks = [...this.bookService.books];
+      }
+    });
   }
 }
