@@ -15,12 +15,7 @@ export class BookService {
   constructor(private toastr: ToastrService, private http: HttpClient) {}
 
   public getAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.url).pipe(
-      tap((books: Book[]) => {
-        this.books = books;
-        this.filteredBooks = [...this.books];
-      })
-    );
+    return this.http.get<Book[]>(this.url);
   }
 
   public getOne(id: number): Observable<Book> {
@@ -31,13 +26,15 @@ export class BookService {
     return this.http.post<Book>(this.url, values);
   }
 
-  public update(id: number, values: any): Observable<Book> {
-    console.log(id); // add this line
-    return this.http.put<Book>(`${this.url}/${id}`, values);
+  public update(id: number, values: any): Observable<any> {
+    console.log(id);
+    return this.http.request('put', `${this.url}`, {
+      body: { id: id, ...values },
+    });
   }
 
-  public delete(id: number): Observable<any> {
-    const url = `${this.url}/${id}`;
-    return this.http.delete(url);
+  delete(id: number): Observable<any> {
+    console.log(id, `${this.url}`);
+    return this.http.request('delete', `${this.url}`, { body: { id: id } });
   }
 }

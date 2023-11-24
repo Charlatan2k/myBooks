@@ -9,14 +9,12 @@
     *ngIf="bookService.filteredBooks.length; else noBooksAlert"
     class="cont-pr"
   >
-    <div class="book-container">
-      <app-card
-        *ngFor="let libro of bookService.filteredBooks; let i = index"
-        [book]="libro"
-        [index]="i"
-        (delete)="deleteBook(i)"
-      ></app-card>
-    </div>
+    <app-card
+      *ngFor="let libro of bookService.filteredBooks; let i = index"
+      [book]="libro"
+      [index]="i"
+      (delete)="deleteBook(i)"
+    ></app-card>
   </div>
 
   <ng-template #noBooksAlert>

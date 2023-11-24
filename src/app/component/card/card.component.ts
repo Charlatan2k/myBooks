@@ -22,15 +22,20 @@ export class CardComponent {
   ) {}
 
   public deleteBook(id: number) {
-    this.bookService.delete(id).subscribe(() => {
-      const index = this.bookService.books.findIndex(
-        (book) => book.id_book === id
-      );
-      if (index !== -1) {
-        this.toastr.success('Book deleted succesfully');
-        this.bookService.books.splice(index, 1);
-        this.bookService.filteredBooks = [...this.bookService.books];
+    this.bookService.delete(id).subscribe(
+      () => {
+        const index = this.bookService.books.findIndex(
+          (book) => book.id_book === id
+        );
+        if (index !== -1) {
+          this.toastr.success('Book deleted succesfully');
+          this.bookService.books.splice(index, 1);
+          this.bookService.filteredBooks = [...this.bookService.books];
+        }
+      },
+      (error) => {
+        console.error('Error deleting book:', error);
       }
-    });
+    );
   }
 }
