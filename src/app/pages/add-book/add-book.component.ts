@@ -24,6 +24,7 @@ export class AddBookComponent implements OnInit {
       autor: '',
       price: '',
       photo: '',
+      id_book: '',
     });
   }
 
@@ -40,6 +41,7 @@ export class AddBookComponent implements OnInit {
     const bookData = {
       ...this.form.value,
       id_user: user.userData.id_user,
+      id_book: this.form.value.id_book,
     };
 
     this.bookService.addBook(bookData).subscribe(

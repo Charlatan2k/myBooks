@@ -50,7 +50,6 @@ export class BookService {
   getBooksByUser(id_user: number): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.url}/books?id_user=${id_user}`).pipe(
       map((books: Book[]) => {
-        console.log(books);
         return books;
       })
     );
@@ -64,5 +63,9 @@ export class BookService {
 
   addBook(book: any): Observable<any> {
     return this.http.post(`${this.url}/books`, book);
+  }
+
+  updateBook(book: any): Observable<any> {
+    return this.http.put(`${this.url}/books`, book);
   }
 }

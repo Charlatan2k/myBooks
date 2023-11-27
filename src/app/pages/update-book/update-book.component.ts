@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from 'src/app/shared/book.service';
 import { ToastrService } from 'ngx-toastr';
 import { Book } from 'src/app/models/book';
+import { UsuarioService } from 'src/app/shared/usuario.service';
 
 @Component({
   selector: 'app-update-book',
@@ -20,35 +21,48 @@ export class UpdateBookComponent implements OnInit {
     private bookService: BookService,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private usuarioService: UsuarioService
   ) {}
 
   ngOnInit() {
     this.bookForm = this.formBuilder.group({
       title: [''],
-      author: [''],
+      b_type: [''],
+      autor: [''],
       price: [''],
       photo: [''],
-      type: [''],
       id_book: [''],
     });
-
-    this.bookId = Number(this.route.snapshot.paramMap.get('id'));
   }
-  onSubmit() {
-    const updatedBook = this.bookForm.value;
-    console.log(updatedBook);
-    console.log(this.book?.photo);
-    this.bookService.update(updatedBook.id_book, updatedBook).subscribe(
-      (updatedBook) => {
-        this.book = updatedBook;
-        this.toastr.success('Book modified successfully');
+  updateBook() {
+    const user: any = this.usuarioService.getUser();
+    console.log('User:', user);
+    console.log('User ID:', user.userData.id_user);
+    console.log('Book ID:', this.bookForm.value.id_book);
+
+    if (!user || !user.userData) {
+      console.error('User information is not available');
+      return;
+    }
+
+    const bookData = {
+      ...this.bookForm.value,
+      id_book: this.bookForm.value.id_book,
+    };
+
+    console.log('Updating book with data:', bookData);
+
+    this.bookService.updateBook(bookData).subscribe(
+      (response) => {
+        console.log('Book updated:', response);
+        this.toastr.success('Book updated successfully');
       },
       (error) => {
-        console.error(error);
-        this.toastr.warning(
-          error.message || 'Libro con id dado no se a encontrado'
-        );
+        console.error('Error updating book:', error);
+        if (error.error) {
+          console.error('Server responded with:', error.error);
+        }
       }
     );
   }

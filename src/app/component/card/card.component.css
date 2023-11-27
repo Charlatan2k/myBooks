@@ -54,10 +54,6 @@
   border-radius: 100%;
 }
 
-.img-container {
-  position: relative;
-}
-
 #btn-x {
   position: absolute;
   right: 0px;
