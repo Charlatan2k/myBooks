@@ -1,8 +1,13 @@
 <div class="cont-pagina">
   <input
-    class="buscador"
-    (input)="getBookById($event.target.value)"
-    placeholder="Search by ID"
+    [(ngModel)]="userIdSearchTerm"
+    (input)="searchBook()"
+    placeholder="Search by User ID"
+  />
+  <input
+    [(ngModel)]="bookIdSearchTerm"
+    (input)="searchBook()"
+    placeholder="Search by Book ID"
   />
 
   <div

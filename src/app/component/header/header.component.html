@@ -1,45 +1,57 @@
 <div class="navbar">
   <div class="navbar-items">
     <a
+      *ngIf="!usuarioService.isLoggedIn()"
       routerLink="/home"
       routerLinkActive="active"
       (click)="navigateTo('/home')"
       id="home-item"
-      >Home</a
     >
+      Home
+    </a>
     <a
+      *ngIf="!usuarioService.isLoggedIn()"
       routerLink="/register"
       routerLinkActive="active"
       (click)="navigateTo('/register')"
       id="register-item"
-      >Register</a
     >
+      Register
+    </a>
     <a
+      *ngIf="!usuarioService.isLoggedIn()"
       routerLink="/login"
       routerLinkActive="active"
       (click)="navigateTo('/login')"
-      >Login</a
     >
+      Login
+    </a>
     <a
+      *ngIf="usuarioService.isLoggedIn()"
       routerLink="/profile"
       routerLinkActive="active"
       (click)="navigateTo('/profile')"
-      id="profile-item"
-      >Profile</a
     >
+      Profile
+    </a>
     <a
+      *ngIf="usuarioService.isLoggedIn()"
       routerLink="/books"
       routerLinkActive="active"
       (click)="navigateTo('/books')"
       >Books</a
     >
+
     <a
+      *ngIf="usuarioService.isLoggedIn()"
       routerLink="/add_book"
       routerLinkActive="active"
       (click)="navigateTo('/add_book')"
       >Add a new Book</a
     >
+
     <a
+      *ngIf="usuarioService.isLoggedIn()"
       routerLink="/update_book"
       routerLinkActive="active"
       (click)="navigateTo('/update_book')"

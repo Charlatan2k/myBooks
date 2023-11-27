@@ -2,15 +2,15 @@ export class Book {
   public id_book: number;
   public id_user?: number;
   public title: string;
-  public type: string;
-  public author: string;
+  public b_type: string;
+  public autor: string;
   public price: number;
   public photo: string;
 
   constructor(
     title: string,
-    type: string,
-    author: string,
+    b_type: string,
+    autor: string,
     price: number,
     photo: string,
     id_book: number = 0,
@@ -19,8 +19,8 @@ export class Book {
     this.id_book = id_book;
     this.id_user = id_user;
     this.title = title;
-    this.type = type;
-    this.author = author;
+    this.b_type = b_type;
+    this.autor = autor;
     this.price = price;
     this.photo = photo;
   }

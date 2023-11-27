@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { UsuarioService } from 'src/app/shared/usuario.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,13 +10,10 @@ import { User } from 'src/app/models/user';
 export class ProfileComponent {
   public user: User;
 
-  constructor() {
-    this.user = new User(
-      'Carlos',
-      'Garcia',
-      'carlos@gmail.com',
-      'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg'
-    );
+  constructor(public usuarioService: UsuarioService) {}
+
+  ngOnInit(): void {
+    this.user = this.usuarioService.getUser();
   }
 
   public enviar(
@@ -24,7 +22,7 @@ export class ProfileComponent {
     nuevoEmail: HTMLInputElement,
     nuevaFoto: HTMLInputElement
   ) {
-    this.user.name = nuevoNombre.value;
+    this.user.first_name = nuevoNombre.value;
     this.user.last_name = nuevoApellido.value;
     this.user.email = nuevoEmail.value;
     this.user.photo = nuevaFoto.value;

@@ -83,6 +83,31 @@
         </li>
         <li>
           <input
+            type="url"
+            formControlName="photo"
+            placeholder="Photo URL"
+            [ngClass]="{
+              'is-invalid':
+                registerForm.controls.photo.invalid &&
+                (registerForm.controls.photo.dirty ||
+                  registerForm.controls.photo.touched)
+            }"
+          />
+          <div
+            *ngIf="
+              (registerForm.controls.photo.dirty ||
+                registerForm.controls.photo.touched) &&
+              registerForm.controls.photo.invalid
+            "
+            class="invalid-feedback"
+          >
+            <p *ngIf="registerForm.controls.photo.errors.required">
+              La url de foto es obligatoria
+            </p>
+          </div>
+        </li>
+        <li>
+          <input
             type="password"
             formControlName="password"
             placeholder="Contraseña"

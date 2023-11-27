@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsuarioService } from '../../shared/usuario.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-form-register',
@@ -9,7 +11,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FormRegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private usuarioService: UsuarioService
+  ) {}
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group(
@@ -17,6 +22,7 @@ export class FormRegisterComponent implements OnInit {
         name: ['', Validators.required],
         apellido: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
+        photo: ['', Validators.required],
         password: ['', Validators.required],
         confirmPassword: ['', Validators.required],
       },
@@ -32,8 +38,21 @@ export class FormRegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
-    }
+    const user = new User(
+      this.registerForm.value.name,
+      this.registerForm.value.apellido,
+      this.registerForm.value.email,
+      this.registerForm.value.photo,
+      this.registerForm.value.password
+    );
+
+    this.usuarioService.register(user).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

@@ -1,7 +1,7 @@
 <div class="cont-pr">
   <div class="cont-form">
     <h1>Inserta tus nuevos libros aquí</h1>
-    <form [formGroup]="bookForm" (ngSubmit)="addBook()">
+    <form [formGroup]="form" (ngSubmit)="addBook()">
       <ul>
         <label for="titulo">Titulo</label>
         <li>
@@ -9,11 +9,15 @@
         </li>
         <label for="tipo">Tipo</label>
         <li>
-          <input type="text" formControlName="type" required />
+          <select formControlName="b_type" required>
+            <option value="">Select a type</option>
+            <option value="Tapa Blanda">Tapa Blanda</option>
+            <option value="Tapa Dura">Tapa Dura</option>
+          </select>
         </li>
         <label for="autor">Autor</label>
         <li>
-          <input type="text" formControlName="author" required />
+          <input type="text" formControlName="autor" required />
         </li>
         <label for="precio">Precio</label>
         <li>
@@ -23,15 +27,11 @@
         <li>
           <input type="url" formControlName="photo" required />
         </li>
-        <label for="id_libro">Book ID</label>
-        <li>
-          <input type="number" formControlName="id_book" required />
-        </li>
         <li>
           <button
             id="btn_guardar_libro"
             type="submit"
-            [disabled]="bookForm.invalid"
+            [disabled]="form.invalid"
           >
             Guardar Nuevo Libro
           </button>

@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/shared/book.service';
 import { ToastrService } from 'ngx-toastr';
+import { UsuarioService } from 'src/app/shared/usuario.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-card',
@@ -18,8 +20,18 @@ export class CardComponent {
 
   constructor(
     private bookService: BookService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public usuarioService: UsuarioService
   ) {}
+
+  ngOnInit() {
+    if (this.usuarioService.isLoggedIn()) {
+      const userId = this.usuarioService.getUser().id_user;
+      this.bookService.getBooksByUser(userId).subscribe((books: Book[]) => {
+        this.books = books;
+      });
+    }
+  }
 
   public deleteBook(id: number) {
     this.bookService.delete(id).subscribe(
