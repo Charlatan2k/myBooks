@@ -42,10 +42,11 @@ export class BooksComponent {
     }
   }
 
-  getBookById(id_user: string, id_book: string) {
-    if (id_user && id_book) {
+  getBookById(id_book: string) {
+    const id_user = this.usuarioService.user.id_user;
+    if (id_book) {
       this.bookService.filteredBooks = this.bookService.books.filter(
-        (book) => book.id_user === +id_user && book.id_book === +id_book
+        (book) => book.id_book === +id_book
       );
     } else {
       this.bookService.filteredBooks = [...this.bookService.books];
@@ -53,6 +54,6 @@ export class BooksComponent {
   }
 
   searchBook() {
-    this.getBookById(this.userIdSearchTerm, this.bookIdSearchTerm);
+    this.getBookById(this.bookIdSearchTerm);
   }
 }
