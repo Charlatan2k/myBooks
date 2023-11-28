@@ -1,10 +1,10 @@
 export class User {
-  public id_user: number;
+  public id_user?: number;
   public first_name: string;
   public last_name: string;
   public email: string;
-  public photo: string;
-  public user_password: string;
+  public photo?: string;
+  public user_password?: string;
 
   constructor(name, last_name, email, photo, user_password) {
     this.first_name = name;

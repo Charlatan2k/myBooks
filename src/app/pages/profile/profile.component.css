@@ -69,17 +69,24 @@
   font-size: 18px;
 }
 
-.columna-titulos,
-.columna-valores {
+.columna-titulos {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.columna-valores {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 3px;
 }
 
 .columna-valores p {
   border: 2px solid gray;
   border-radius: 4px;
   width: 20vh;
+  height: 4vh;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

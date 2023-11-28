@@ -24,7 +24,6 @@ export class AddBookComponent implements OnInit {
       autor: '',
       price: '',
       photo: '',
-      id_book: '',
     });
   }
 

@@ -2,8 +2,10 @@
   <div class="cont-perfil">
     <div class="cont-left">
       <div class="left-items">
-        <img src="{{ user.photo }}" alt="" />
-        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+        <img [src]="user?.userData?.photo" alt="" />
+        <h3>
+          {{ user?.userData?.first_name }} {{ user?.userData?.last_name }}
+        </h3>
       </div>
       <div class="datos-usuario">
         <div class="columna-titulos">
@@ -12,9 +14,9 @@
           <p>Correo</p>
         </div>
         <div class="columna-valores">
-          <p>{{ user.first_name }}</p>
-          <p>{{ user.last_name }}</p>
-          <p>{{ user.email }}</p>
+          <p>{{ user?.userData?.first_name }}</p>
+          <p>{{ user?.userData?.last_name }}</p>
+          <p>{{ user?.userData?.email }}</p>
         </div>
       </div>
     </div>
@@ -22,41 +24,46 @@
       <div class="right-items">
         <h1>Editar datos</h1>
         <div class="campo-editar">
-          <form>
+          <form #modifyForm="ngForm" (ngSubmit)="onSubmit(modifyForm.value)">
             <ul>
               <li>
                 <label for="Nombre"></label>
-                <input type="text" #nvNombre placeholder="Nombre" name="name" />
+                <input
+                  type="text"
+                  placeholder="Nombre"
+                  name="first_name"
+                  [(ngModel)]="formData.first_name"
+                />
               </li>
               <li>
                 <label for="Apellido"></label>
                 <input
                   type="text"
-                  #nvApellido
                   placeholder="Apellido"
                   name="last_name"
+                  [(ngModel)]="formData.last_name"
                 />
               </li>
               <li>
                 <label for="Correo"></label>
                 <input
                   type="email"
-                  #nvEmail
                   placeholder="Correo"
                   name="email"
+                  [(ngModel)]="formData.email"
                 />
               </li>
               <li>
                 <label for="Url"></label>
-                <input type="url" #nvUrl placeholder="URL" name="photo" />
+                <input
+                  type="url"
+                  placeholder="URL"
+                  name="photo"
+                  [(ngModel)]="formData.photo"
+                />
               </li>
             </ul>
-            <button
-              type="button"
-              (click)="enviar(nvNombre, nvApellido, nvEmail, nvUrl)"
-            >
-              Modificar
-            </button>
+            <button type="submit">Modificar</button>
           </form>
         </div>
       </div>

@@ -24,7 +24,11 @@ export class UsuarioService {
     return this.logueado;
   }
 
-  getUser(): User {
+  updateUser(user: User) {
+    return this.http.put(`${this.url}/usuarios`, user);
+  }
+
+  getUser() {
     return this.user;
   }
 }

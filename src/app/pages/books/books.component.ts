@@ -25,10 +25,9 @@ export class BooksComponent {
 
   ngOnInit() {
     if (this.usuarioService.isLoggedIn()) {
-      const user: any = this.usuarioService.getUser(); // Treat the user object as any type
-      console.log(user); // Log the user object to the console
-      if (user && user.userData && user.userData.id_user) {
-        console.log(user.userData.id_user); // Log the id_user property to the console
+      const user: any = this.usuarioService.getUser();
+
+      if (user && user.userData) {
         this.bookService
           .getBooksByUser(user.userData.id_user)
           .subscribe((books: Book[]) => {

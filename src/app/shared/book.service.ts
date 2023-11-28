@@ -23,28 +23,11 @@ export class BookService {
     public usuarioService: UsuarioService
   ) {}
 
-  public getAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.url);
-  }
-
-  public getOne(id: number): Observable<Book> {
-    return this.http.get<Book>(`${this.url}/${id}`);
-  }
-
-  public add(values: any): Observable<Book> {
-    return this.http.post<Book>(this.url, values);
-  }
-
   public update(id: number, values: any): Observable<any> {
     console.log(id);
     return this.http.request('put', `${this.url}`, {
       body: { id: id, ...values },
     });
-  }
-
-  delete(id: number): Observable<any> {
-    console.log(id, `${this.url}`);
-    return this.http.request('delete', `${this.url}`, { body: { id: id } });
   }
 
   getBooksByUser(id_user: number): Observable<Book[]> {
@@ -67,5 +50,9 @@ export class BookService {
 
   updateBook(book: any): Observable<any> {
     return this.http.put(`${this.url}/books`, book);
+  }
+
+  deleteBook(id: number): Observable<any> {
+    return this.http.delete(`${this.url}/books?id_book=${id}`);
   }
 }

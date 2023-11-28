@@ -34,7 +34,7 @@ export class CardComponent {
   }
 
   public deleteBook(id: number) {
-    this.bookService.delete(id).subscribe(
+    this.bookService.deleteBook(id).subscribe(
       () => {
         const index = this.bookService.books.findIndex(
           (book) => book.id_book === id
