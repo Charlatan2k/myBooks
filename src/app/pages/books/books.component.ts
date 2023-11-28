@@ -39,8 +39,6 @@ export class BooksComponent {
           'User is not defined or does not have an id_user property'
         );
       }
-    } else {
-      console.error('User is not logged in');
     }
   }
 

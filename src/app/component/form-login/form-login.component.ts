@@ -31,7 +31,7 @@ export class FormLoginComponent {
       },
       (error) => {
         this.errorMessage = error.error.message;
-        this.toastr.error(this.errorMessage, 'Error!');
+        this.toastr.error(this.errorMessage, 'Usuario no encontrado!');
       }
     );
   }
